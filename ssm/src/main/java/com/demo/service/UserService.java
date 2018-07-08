@@ -2,6 +2,8 @@ package com.demo.service;
 
 import com.demo.dao.entity.UserEntity;
 
+import java.util.List;
+
 public interface UserService {
     Integer createUser(UserEntity userEntity);
 
@@ -10,4 +12,6 @@ public interface UserService {
     Integer deleteUser(Integer id);
 
     UserEntity getUserById(String id);
+
+    List queryList();
 }

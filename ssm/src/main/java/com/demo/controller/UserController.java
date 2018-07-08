@@ -4,7 +4,6 @@ import com.demo.dao.entity.UserEntity;
 import com.demo.domain.User;
 import com.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +17,13 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @ResponseBody
+    public String queryList(){
+        List list = userService.queryList();
+        return "";
+    }
 
     @RequestMapping(value = "/{userid}/query", method = RequestMethod.POST)
     @ResponseBody

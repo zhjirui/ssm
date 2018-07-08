@@ -6,6 +6,9 @@ import com.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -27,4 +30,11 @@ public class UserServiceImpl implements UserService{
     public UserEntity getUserById(String id) {
         return userDao.selectById(id);
     }
+
+    public List queryList() {
+        Map map = new HashMap();
+        List list = userDao.queryForList(map);
+        return list;
+    }
+
 }

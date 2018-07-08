@@ -2,6 +2,9 @@ package com.demo.dao;
 
 import com.demo.dao.entity.UserEntity;
 
+import java.util.List;
+import java.util.Map;
+
 public interface UserDao {
         /**
          * 插入用户记录
@@ -34,4 +37,6 @@ public interface UserDao {
          * @return
          */
         UserEntity selectById(String id);
+
+        List queryForList(Map map);
 }
