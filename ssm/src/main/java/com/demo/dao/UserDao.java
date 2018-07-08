@@ -39,4 +39,6 @@ public interface UserDao {
         UserEntity selectById(String id);
 
         List queryForList(Map map);
+
+        Map queryForObject(Map map);
 }

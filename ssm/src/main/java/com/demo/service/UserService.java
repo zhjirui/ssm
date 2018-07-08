@@ -3,6 +3,7 @@ package com.demo.service;
 import com.demo.dao.entity.UserEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     Integer createUser(UserEntity userEntity);
@@ -14,4 +15,6 @@ public interface UserService {
     UserEntity getUserById(String id);
 
     List queryList();
+
+    Map queryForObject(String id);
 }

@@ -28,4 +28,8 @@
     <select id="queryForList" parameterType="Map" resultType="java.util.HashMap">
         select * from user
     </select>
+
+    <select id="queryForObject" parameterType="Map" resultType="java.util.HashMap">
+        select * from user
+    </select>
 </mapper>

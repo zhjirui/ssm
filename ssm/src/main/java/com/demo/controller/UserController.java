@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -20,9 +21,16 @@ public class UserController {
 
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     @ResponseBody
-    public String queryList(){
+    public Object queryList(){
         List list = userService.queryList();
-        return "";
+        return list;
+    }
+
+    @RequestMapping(value = "/{userid}/list", method = RequestMethod.POST)
+    @ResponseBody
+    public Object queryObject(@PathVariable(value = "userid") String userid){
+        Map map = userService.queryForObject(userid);
+        return map;
     }
 
     @RequestMapping(value = "/{userid}/query", method = RequestMethod.POST)

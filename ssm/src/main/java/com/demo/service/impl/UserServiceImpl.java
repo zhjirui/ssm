@@ -37,4 +37,10 @@ public class UserServiceImpl implements UserService{
         return list;
     }
 
+    public Map queryForObject(String id) {
+        Map map = new HashMap();
+        HashMap resultMap = (HashMap) userDao.queryForObject(map);
+        return resultMap;
+    }
+
 }
