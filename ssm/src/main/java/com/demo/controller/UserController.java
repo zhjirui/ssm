@@ -1,7 +1,9 @@
 package com.demo.controller;
 
 import com.demo.dao.entity.UserEntity;
+import com.demo.domain.Account;
 import com.demo.domain.User;
+import com.demo.service.AccountService;
 import com.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    AccountService accountService;
 
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     @ResponseBody
@@ -43,5 +48,22 @@ public class UserController {
             UserEntity users = userService.getUserById(userid);
             return users.getUsername();
         }
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    public String testTranstraction(User user) throws Exception{
+        UserEntity userEntity = new UserEntity();
+        Account account = new Account();
+        userEntity.setId(user.getId());
+        userEntity.setUsername(user.getUsername());
+        userEntity.setPassword(user.getPassword());
+
+        account.setId(Integer.toString(user.getId()));
+        account.setUserId(user.getUsername());
+        account.setNum(user.getId());
+        userService.createUser(userEntity);
+        accountService.insert(account);
+        return null;
     }
 }

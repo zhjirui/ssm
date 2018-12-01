@@ -4,6 +4,8 @@ import com.demo.dao.UserDao;
 import com.demo.dao.entity.UserEntity;
 import com.demo.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -11,14 +13,18 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED)
 public class UserServiceImpl implements UserService{
     @Resource
     private UserDao userDao;
 
     public Integer createUser(UserEntity userEntity) {
-        return userDao.insert(userEntity);
+        userDao.insert(userEntity);
+        int i = 1/0;
+        return 0;
     }
 
+    //@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public Integer updateUser(UserEntity userEntity) {
         return userDao.update(userEntity);
     }
