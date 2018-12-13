@@ -10,7 +10,9 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 自动扫描  @Controller-->
-    <context:component-scan base-package="com.demo.*"/>
+    <context:component-scan base-package="com.demo.*">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -63,4 +65,11 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+    <!-- 配置拦截器，用户登录验证 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.demo.intercepor.IsLoginIntercepor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

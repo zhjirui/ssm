@@ -19,9 +19,7 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
 
     public Integer createUser(UserEntity userEntity) {
-        userDao.insert(userEntity);
-        int i = 1/0;
-        return 0;
+        return userDao.insert(userEntity);
     }
 
     //@Transactional(readOnly = false, propagation = Propagation.REQUIRED)

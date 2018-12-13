@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+/target/
+/.idea/
+/.idea/libraries/Maven__c3p0_c3p0_0_9_1_1.xml
+/.idea/libraries/Maven__com_google_protobuf_protobuf_java_2_6_0.xml
