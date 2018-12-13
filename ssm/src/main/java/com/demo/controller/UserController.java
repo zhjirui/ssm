@@ -5,6 +5,8 @@ import com.demo.domain.Account;
 import com.demo.domain.User;
 import com.demo.service.AccountService;
 import com.demo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,8 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     UserService userService;
 
@@ -28,6 +32,8 @@ public class UserController {
     @ResponseBody
     public Object queryList(){
         List list = userService.queryList();
+        logger.debug("log打印日志");
+        logger.info("log打印日志");
         return list;
     }
 
