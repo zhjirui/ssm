@@ -32,7 +32,7 @@
         <!-- 指定Tirgger绑定的Job -->
         <property name="jobDetail" ref="helloJob"/>
         <!-- 指定Cron 的表达式 ，当前是每隔5s运行一次 -->
-        <property name="cronExpression" value="0/59 * * * * ?" />
+        <property name="cronExpression" value="0/59 10 * * * ?" />
     </bean>
 
 
