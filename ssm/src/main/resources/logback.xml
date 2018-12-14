@@ -31,7 +31,7 @@
             </triggeringPolicy>
          </appender>
         <!-- 精确设置每个包下面的日志 -->
-        <logger name="com.*" level="DEBUG">
+        <logger name="com" level="DEBUG">
             <appender-ref ref="STDOUT" />
             <appender-ref ref="userLog" />
         </logger>
