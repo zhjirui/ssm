@@ -12,16 +12,13 @@
                         http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
     <!-- 自动扫描  @Controller-->
-    <context:component-scan base-package="com.demo.*">
+    <context:component-scan base-package="com.demo.controller">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
     </context:component-scan>
-    <mvc:annotation-driven />
     <!-- 启动对@AspectJ注解的支持 -->
     <!-- proxy-target-class等于true是强制使用cglib代理，proxy-target-class默认是false，如果你的类实现了接口 就走JDK代理，如果没有，走cglib代理 -->
     <!-- 注：对于单利模式建议使用cglib代理，虽然JDK动态代理比cglib代理速度快，但性能不如cglib -->
-    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
-    <!--日志切面
-    <bean id="logAspect" class="com.demo.log.Log"></bean>-->
+    <aop:aspectj-autoproxy />
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -74,11 +71,11 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-    <!-- 配置拦截器，用户登录验证
+    <!-- 配置拦截器，用户登录验证 -->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.demo.intercepor.IsLoginIntercepor"></bean>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 </beans>

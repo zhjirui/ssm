@@ -30,11 +30,11 @@
                 <MaxFileSize>10MB</MaxFileSize>
             </triggeringPolicy>
          </appender>
-        <!-- 精确设置每个包下面的日志 -->
+        <!-- 精确设置每个包下面的日志
         <logger name="com" level="DEBUG">
             <appender-ref ref="STDOUT" />
             <appender-ref ref="userLog" />
-        </logger>
+        </logger>-->
         <!-- myibatis log 配置-->
         <logger name="com.apache.ibatis" level="ERROR"/>
         <logger name="java.sql.Connection" level="DEBUG"/>
@@ -42,7 +42,7 @@
         <logger name="java.sql.PreparedStatement" level="DEBUG"/>
         <!-- 定义了ERROR和INFO级别的日志输出 -->
         <!-- 必须放到最后，不能放到最前面 -->
-        <root level="DEBUG">
+        <root level="ERROR">
             <appender-ref ref="STDOUT" />
             <appender-ref ref="outputFile" />
         </root>
