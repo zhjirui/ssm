@@ -55,6 +55,15 @@
         <!-- 校验器，使用hibernate校验器 -->
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
     </bean>
+    <!-- 国际化资源配置,资源文件绑定器-->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- 国际化资源文件配置,指定properties文件存放位置 -->
+        <property name="basename" value="classpath:i18n/message" />
+        <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称-->
+        <property name="useCodeAsDefaultMessage" value="true" />
+    </bean>
+    <!-- 动态切换国际化 ,国际化放在session中 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
     <mvc:annotation-driven validator="validator"></mvc:annotation-driven>
     <!-- 返回json 方法一 需要导入 fastjson.jar包 -->
     <mvc:annotation-driven>
@@ -76,6 +85,14 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.demo.intercepor.IsLoginIntercepor"></bean>
+        </mvc:interceptor>
+        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+                <!-- 通过这个参数来决定获取那个配置文件 -->
+                <property name="paramName" value="language" />
+            </bean>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

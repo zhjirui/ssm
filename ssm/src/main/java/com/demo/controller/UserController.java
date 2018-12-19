@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.RequestContext;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +38,16 @@ public class UserController {
         logger.debug("log打印日志");
         logger.info("log打印日志");
         return list;
+    }
+
+    //测试中文国际化
+    @RequestMapping(value = "/testI18n", method = RequestMethod.POST)
+    @ResponseBody
+    public Object testI18n(HttpServletRequest request, HttpServletResponse response){
+        RequestContext req = new RequestContext(request);
+        String driverClasss = req.getMessage("driverClasss");
+        String unKnow = req.getMessage("unKnow");
+        return driverClasss + unKnow;
     }
 
     @RequestMapping(value = "/{userid}/list", method = RequestMethod.POST)
