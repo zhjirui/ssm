@@ -37,9 +37,9 @@
         </logger>-->
         <!-- myibatis log 配置-->
         <logger name="com.apache.ibatis" level="ERROR"/>
-        <logger name="java.sql.Connection" level="DEBUG"/>
-        <logger name="java.sql.Statement" level="DEBUG"/>
-        <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+        <logger name="java.sql.Connection" level="ERROR"/>
+        <logger name="java.sql.Statement" level="ERROR"/>
+        <logger name="java.sql.PreparedStatement" level="ERROR"/>
         <!-- 定义了ERROR和INFO级别的日志输出 -->
         <!-- 必须放到最后，不能放到最前面 -->
         <root level="ERROR">

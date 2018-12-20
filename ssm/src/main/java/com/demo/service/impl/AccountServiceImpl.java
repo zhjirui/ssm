@@ -1,14 +1,14 @@
 package com.demo.service.impl;
 
-import com.demo.dao.AccountDao;
-import com.demo.dao.entity.AccountEntity;
 import com.demo.domain.Account;
+import com.demo.domain.AccountMapper;
 import com.demo.service.AccountService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.*;
 
 /**
  * propagation：传播级别
@@ -24,16 +24,25 @@ import javax.annotation.Resource;
 public class AccountServiceImpl implements AccountService{
 
     @Resource
-    private AccountDao accountDao;
+    private AccountMapper accountMapper;
+
+    public List query() {
+        Account account = accountMapper.selectByPrimaryKey(1);
+        account.getId();
+        List list = new ArrayList();
+        Map map = new HashMap();
+        map.put(account.getId(),account.getId());
+        list.add(map);
+        return list;
+    }
 
     public Integer insert(Account account) throws Exception{
-        AccountEntity accountEntity = new AccountEntity();
+        Account accountEntity = new Account();
         accountEntity.setId(account.getId());
-        accountEntity.setUserid(account.getUserId());
+        accountEntity.setUserid(account.getUserid());
         accountEntity.setNum(account.getNum());
-        accountDao.insert(accountEntity);
+        accountMapper.insert(accountEntity);
         int i = 10/0;
         return 0;
     }
-
 }

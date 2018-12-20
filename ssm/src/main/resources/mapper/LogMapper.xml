@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.domain.LogMapper">
+  <resultMap id="BaseResultMap" type="com.demo.domain.Log">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="logdate" jdbcType="TIMESTAMP" property="logdate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.demo.domain.Log">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, logdate
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.domain.Log">
+    insert into log (id, username, logdate, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{logdate,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.domain.Log">
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="logdate != null">
+        logdate,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="logdate != null">
+        #{logdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.domain.Log">
+    update log
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="logdate != null">
+        logdate = #{logdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.demo.domain.Log">
+    update log
+    set username = #{username,jdbcType=VARCHAR},
+      logdate = #{logdate,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.domain.Log">
+    update log
+    set username = #{username,jdbcType=VARCHAR},
+      logdate = #{logdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="conditions">
+    <trim prefix="where" prefixOverrides="and|or">
+      1=1
+      <if test="id!=null">
+        and  t.id = #{id}
+      </if>
+      <if test="username!=null">
+        and  t.username = #{username}
+      </if>
+      <if test="logdate!=null">
+        and  t.logdate = #{logdate}
+      </if>
+      <if test="content!=null">
+        and  t.content = #{content}
+      </if>
+    </trim>
+  </sql>
+  <sql id="sets">
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="username!=null">
+        t.username = #{username},
+      </if>
+      <if test="logdate!=null">
+        t.logdate = #{logdate},
+      </if>
+      <if test="content!=null">
+        t.content = #{content},
+      </if>
+    </trim>
+  </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    select * from log
+  </select>
+  <delete id="deleteByIds">
+     delete from log  t where t.id in (#{ids})
+  </delete>
+  <select id="get" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select *  from log t
+    <include refid="conditions"/>
+  </select>
+  <select id="getCount" parameterType="java.util.Map" resultType="java.lang.Long">
+     select count(*) from log t
+    <include refid="conditions"/>
+  </select>
+  <insert id="saveBatch" parameterType="java.util.List">
+    insert into log(username,logdate,content,)
+    <foreach collection="list" index="index" item="item" separator="UNION ALL">
+      SELECT
+      #{item.username,jdbcType=VARCHAR},#{item.logdate,jdbcType=TIMESTAMP},#{item.content,jdbcType=LONGVARCHAR},
+      from dual
+    </foreach>
+  </insert>
+  <select id="page" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from log t
+    <include refid="conditions"/>
+    <if test="orders!=null">
+      order by
+      <foreach collection="orders" index="index" item="item" separator=",">
+        t.${item}
+      </foreach>
+      <if test="orderType!=null">
+         ${orderType}
+      </if>
+    </if>
+    LIMIT #{startPage},#{endPage}
+  </select>
+</mapper>
