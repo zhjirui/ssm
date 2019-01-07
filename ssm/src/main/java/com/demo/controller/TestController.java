@@ -28,8 +28,9 @@ public class TestController {
     @ResponseBody
     public Object queryList(){
         List list = accountService.query();
-        logger.debug("log打印日志");
-        logger.info("log打印日志");
+        logger.debug("log debug打印日志");
+        logger.info("log info打印日志");
+        logger.error("log error打印日志");
         return list;
     }
 
