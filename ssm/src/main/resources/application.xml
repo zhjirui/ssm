@@ -7,4 +7,5 @@
     <import resource="spring-mybatis.xml"/>
     <!--<import resource="quartz.xml"/>-->
     <import resource="threadpool.xml"/>
+    <import resource="rabbitmq.xml"/>
 </beans>

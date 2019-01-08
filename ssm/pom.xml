@@ -89,6 +89,12 @@
       <artifactId>aspectjweaver</artifactId>
       <version>1.8.13</version>
     </dependency>
+    <!-- spring rabbitmq 集成-->
+    <dependency>
+      <groupId>org.springframework.amqp</groupId>
+      <artifactId>spring-rabbit</artifactId>
+      <version>1.7.5.RELEASE</version>
+    </dependency>
     <!-- 添加mybatis依赖 -->
     <dependency>
       <groupId>org.mybatis</groupId>
