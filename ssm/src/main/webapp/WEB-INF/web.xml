@@ -36,6 +36,10 @@
   <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
+  <!-- quartz监听器 -->
+  <listener>
+    <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+  </listener>
   <!-- spring mvc servlet-->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
