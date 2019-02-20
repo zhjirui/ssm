@@ -2,6 +2,7 @@ package com.demo.service.impl;
 
 import com.demo.domain.Account;
 import com.demo.domain.AccountMapper;
+import com.demo.domain.CommonMapper;
 import com.demo.service.AccountService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,6 +26,8 @@ public class AccountServiceImpl implements AccountService{
 
     @Resource
     private AccountMapper accountMapper;
+    @Resource
+    private CommonMapper commonMapper;
 
     public List query() {
         Account account = accountMapper.selectByPrimaryKey(1);
@@ -33,6 +36,11 @@ public class AccountServiceImpl implements AccountService{
         Map map = new HashMap();
         map.put(account.getId(),account.getId());
         list.add(map);
+        return list;
+    }
+
+    public List queryList() {
+        List list = commonMapper.queryList();
         return list;
     }
 

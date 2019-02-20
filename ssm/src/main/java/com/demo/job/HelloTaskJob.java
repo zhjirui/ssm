@@ -13,6 +13,7 @@ public class HelloTaskJob implements BaseJob {
 
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         Calendar calendar = Calendar.getInstance();
+
         System.out.println(calendar.getTime() + "定时服务");
     }
 }

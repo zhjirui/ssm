@@ -24,13 +24,20 @@ public class TestController {
     @Autowired
     AccountService accountService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryList(){
+    public Object query(){
         List list = accountService.query();
         logger.debug("log debug打印日志");
         logger.info("log info打印日志");
         logger.error("log error打印日志");
+        return list;
+    }
+
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Object queryList(){
+        List list = accountService.queryList();
         return list;
     }
 
