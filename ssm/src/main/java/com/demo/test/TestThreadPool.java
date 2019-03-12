@@ -1,4 +1,4 @@
-package com.demo.controller;
+package com.demo.test;
 
 import com.demo.thread.ThreadPoolTask;
 import org.springframework.beans.factory.annotation.Autowired;

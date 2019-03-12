@@ -8,4 +8,5 @@
     <!--<import resource="quartz.xml"/>-->
     <import resource="threadpool.xml"/>
     <import resource="rabbitmq.xml"/>
+    <import resource="webservice.xml"/>
 </beans>

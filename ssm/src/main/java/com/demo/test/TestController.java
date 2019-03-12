@@ -1,4 +1,4 @@
-package com.demo.controller;
+package com.demo.test;
 
 import com.demo.domain.Account;
 import com.demo.service.AccountService;
