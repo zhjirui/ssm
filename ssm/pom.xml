@@ -237,6 +237,11 @@
       <artifactId>cxf-rt-frontend-jaxws</artifactId>
       <version>3.2.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.1.2</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>ssm</finalName>

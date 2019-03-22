@@ -2,6 +2,7 @@ package com.demo.test;
 
 import com.demo.domain.Account;
 import com.demo.service.AccountService;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,4 +63,11 @@ public class TestController {
         }
     }
 
+    @RequestMapping(value = "/queryByPage")
+    @ResponseBody
+    public PageInfo queryByPage(HttpServletRequest request){
+        int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        return accountService.queryByPage(pageNo, pageSize);
+    }
 }

@@ -2,6 +2,8 @@ package com.demo.domain;
 
 import com.demo.domain.Account;
 
+import java.util.List;
+
 public interface AccountMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface AccountMapper {
     int updateByPrimaryKeySelective(Account record);
 
     int updateByPrimaryKey(Account record);
+
+    List<Account> getAll();
 }

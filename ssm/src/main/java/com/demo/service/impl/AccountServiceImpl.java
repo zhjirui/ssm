@@ -4,6 +4,8 @@ import com.demo.domain.Account;
 import com.demo.domain.AccountMapper;
 import com.demo.domain.CommonMapper;
 import com.demo.service.AccountService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,5 +54,24 @@ public class AccountServiceImpl implements AccountService{
         accountMapper.insert(accountEntity);
         int i = 10/0;
         return 0;
+    }
+
+    public PageInfo queryByPage(Integer pageNo, Integer pageSize) {
+        pageNo = pageNo == null?1:pageNo;
+        pageSize = pageSize == null?10:pageSize;
+        PageHelper.startPage(pageNo, pageSize);
+        List<Account> list = accountMapper.getAll();
+        //用PageInfo对结果进行包装
+        PageInfo page = new PageInfo(list);
+        //测试PageInfo全部属性
+        System.out.println(page.getPageNum());
+        System.out.println(page.getPageSize());
+        System.out.println(page.getStartRow());
+        System.out.println(page.getEndRow());
+        System.out.println(page.getTotal());
+        System.out.println(page.getPages());
+        System.out.println(page.isHasPreviousPage());
+        System.out.println(page.isHasNextPage());
+        return page;
     }
 }
