@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
-@Controller
+//@Controller
 @RequestMapping("/rabbitMQ")
 public class TestRabbitMQController {
 
