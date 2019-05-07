@@ -32,12 +32,17 @@ public class AccountServiceImpl implements AccountService{
     private CommonMapper commonMapper;
 
     public List query() {
-        Account account = accountMapper.selectByPrimaryKey(1);
-        account.getId();
-        List list = new ArrayList();
-        Map map = new HashMap();
-        map.put(account.getId(),account.getId());
-        list.add(map);
+        List list = null;
+        try {
+            Account account = accountMapper.selectByPrimaryKey(1);
+            account.getId();
+            list = new ArrayList();
+            Map map = new HashMap();
+            map.put(account.getId(),account.getId());
+            list.add(map);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return list;
     }
 

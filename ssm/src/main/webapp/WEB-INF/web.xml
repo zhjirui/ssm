@@ -66,6 +66,25 @@
     <servlet-name>cxf</servlet-name>
     <url-pattern>/service/*</url-pattern>
   </servlet-mapping>
+  <!-- druid监控 -->
+  <servlet>
+    <servlet-name>DruidStatView</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    <init-param>
+      <!-- 用户名 -->
+      <param-name>loginUsername</param-name>
+      <param-value>admin</param-value>
+    </init-param>
+    <init-param>
+      <!-- 密码 -->
+      <param-name>loginPassword</param-name>
+      <param-value>admin</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DruidStatView</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>
   <!--<welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>-->
