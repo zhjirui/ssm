@@ -238,6 +238,12 @@
       <artifactId>pagehelper</artifactId>
       <version>5.1.2</version>
     </dependency>
+      <!-- hutool工具包 -->
+      <dependency>
+          <groupId>cn.hutool</groupId>
+          <artifactId>hutool-all</artifactId>
+          <version>4.5.1</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>ssm</finalName>
